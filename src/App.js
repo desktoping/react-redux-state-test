@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import './App.css'
+import Header from './header'
 
 class App extends Component {
   render() {
+    const { num, dispatch } = this.props
+    console.log(this.props)
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header />
+        <div>{num}</div>
+        <button onClick={() => dispatch({ type: 'add' })}>Increase</button>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default connect(
+  ({ num }) => ({ num })
+)(App)
